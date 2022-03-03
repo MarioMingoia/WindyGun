@@ -11,21 +11,30 @@ public class ConveyorBelt : MonoBehaviour
     public GameObject newPos;
     private void OnTriggerStay(Collider other)
     {
-        for (int i = 0; i < tags.Count; i++)
+        try
         {
-            if (other.gameObject.CompareTag(tags[i]))
+            for (int i = 0; i < tags.Count; i++)
             {
-                other.transform.position = Vector3.MoveTowards(other.transform.position, endPoint.position, speed * Time.deltaTime);
-
-                if (Vector3.Distance(other.transform.position, endPoint.position) <= 1f)
+                if (other.gameObject.CompareTag(tags[i]))
                 {
-                    print("123");
-                    other.transform.position = newPos.transform.position;
+                    other.transform.position = Vector3.MoveTowards(other.transform.position, endPoint.position, speed * Time.deltaTime);
+
+                    if (Vector3.Distance(other.transform.position, endPoint.position) <= 1f && newPos != null)
+                    {
+                        other.transform.position = newPos.transform.position;
+                    }
+
                 }
 
             }
 
+            if (other.gameObject.tag == "WindArea")
+                other.transform.parent = this.transform;
         }
+        catch
+        {
+        }
+
 
        
 

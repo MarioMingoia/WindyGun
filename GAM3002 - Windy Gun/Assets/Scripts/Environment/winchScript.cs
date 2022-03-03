@@ -12,6 +12,7 @@ public class winchScript : MonoBehaviour
     public LineRenderer lrnd;
 
     public GameObject platform;
+    public GameObject platformLine;
 
     public GameObject target;
     public bool windLeft = false;
@@ -33,7 +34,7 @@ public class winchScript : MonoBehaviour
     void Update()
     {
         lrnd.SetPosition(0, myCenter.transform.position);
-        lrnd.SetPosition(1, platform.transform.position);
+        lrnd.SetPosition(1, platformLine.transform.position);
         if (myStrength > 0)
         {
 
@@ -81,11 +82,6 @@ public class winchScript : MonoBehaviour
             windy.Add(other.gameObject);
             windLeft = false;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        
     }
 
 }

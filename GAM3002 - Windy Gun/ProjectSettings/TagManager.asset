@@ -8,6 +8,7 @@ TagManager:
   - Chests
   - rope
   - SpecialCube
+  - WindArea
   layers:
   - Default
   - TransparentFX

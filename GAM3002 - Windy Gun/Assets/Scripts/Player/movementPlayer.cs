@@ -7,6 +7,7 @@ public class movementPlayer : MonoBehaviour
     // movement
     public float speed;
     private float originalSpeed;
+    bool isSprint;
 
     // Jump
     public float jumpForce;
@@ -33,6 +34,7 @@ public class movementPlayer : MonoBehaviour
             speed *= 1.5f;
         if (Input.GetKeyUp(KeyCode.LeftControl))
             speed = originalSpeed;
+
 
         if (grounded)
         {

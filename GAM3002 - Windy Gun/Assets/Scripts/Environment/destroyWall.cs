@@ -40,6 +40,21 @@ public class destroyWall : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<abilityToDestroy>().canDestroy)
                 destroy = true;
+
+            if (collision.gameObject.tag == "WindArea" && collision.gameObject.transform.parent)
+                destroy = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Contains(collisionTag))
+        {
+            if (other.gameObject.GetComponent<abilityToDestroy>().canDestroy)
+                destroy = true;
+
+            if (other.gameObject.tag == "WindArea" && other.gameObject.transform.parent)
+                destroy = true;
         }
     }
 }

@@ -5,9 +5,11 @@ using UnityEngine;
 public class TextSpawnIn : MonoBehaviour
 {
     public GameObject spawnIn;
-    public GameObject spawnInChecker;
+    GameObject spawnInChecker;
 
     public GameObject buttons;
+
+    float speed = 0.75f;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -24,8 +26,8 @@ public class TextSpawnIn : MonoBehaviour
 
             if (spawnInChecker != null)
             {
-                spawnInChecker.transform.Translate(1, 0, 0);
-                if (spawnInChecker.transform.localPosition.x >= 1250)
+                spawnInChecker.transform.Translate(speed, 0, 0);
+                if ((spawnInChecker.transform.position.x + transform.position.x) >= 2000)
                 {
                     Destroy(spawnInChecker);
                 }
@@ -33,6 +35,8 @@ public class TextSpawnIn : MonoBehaviour
                 else if ((spawnInChecker.transform.position.x + transform.position.x) >= 0)
                 {
                     buttons.SetActive(true);
+
+                    speed = Mathf.Lerp(speed, 0.5f, Time.deltaTime);
 
                 }
             }
