@@ -33,8 +33,16 @@ public class winchScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lrnd.SetPosition(0, myCenter.transform.position);
-        lrnd.SetPosition(1, platformLine.transform.position);
+        if (platformLine)
+        {
+            lrnd.enabled = true;
+            lrnd.SetPosition(0, myCenter.transform.position);
+            lrnd.SetPosition(1, platformLine.transform.position);
+        }
+        else
+        {
+            lrnd.enabled = false;
+        }
         if (myStrength > 0)
         {
 
