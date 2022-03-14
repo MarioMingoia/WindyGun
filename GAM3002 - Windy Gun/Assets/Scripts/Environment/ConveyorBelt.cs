@@ -8,7 +8,6 @@ public class ConveyorBelt : MonoBehaviour
     public List<string> tags;
     public Transform endPoint;
     public float speed;
-    public GameObject newPos;
     private void OnTriggerStay(Collider other)
     {
         try
@@ -19,17 +18,9 @@ public class ConveyorBelt : MonoBehaviour
                 {
                     other.transform.position = Vector3.MoveTowards(other.transform.position, endPoint.position, speed * Time.deltaTime);
 
-                    if (Vector3.Distance(other.transform.position, endPoint.position) <= 1f && newPos != null)
-                    {
-                        other.transform.position = newPos.transform.position;
-                    }
-
                 }
 
             }
-
-            if (other.gameObject.tag == "WindArea")
-                other.transform.parent = this.transform;
         }
         catch
         {

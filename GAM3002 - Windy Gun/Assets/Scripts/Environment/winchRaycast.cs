@@ -13,6 +13,9 @@ public class winchRaycast : MonoBehaviour
 
     [SerializeField]
     float rayDistance;
+
+    public GameObject plate;
+    public GameObject winch;
     void Start()
     {
         ws = GetComponent<winchScript>();
@@ -41,19 +44,24 @@ public class winchRaycast : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, rayDistance))
         {
-            print(hit.transform.gameObject.name);
-
             if (hit.collider.CompareTag(tagName))
             {
-                int childCount = hit.transform.childCount - 1;
 
                 ws.platform = hit.transform.gameObject;
-                ws.platformLine = hit.transform.GetChild(childCount).gameObject;
+                ws.platformLine = hit.transform.GetChild(0).gameObject;
+
+                plate.GetComponent<startSpawning>().startSpawningBool = true;
+
+                winch.GetComponent<winchScript>().enabled = false;
             }
             else
             {
                 ws.platform = null;
                 ws.platformLine = null;
+                plate.GetComponent<startSpawning>().startSpawningBool = false;
+                winch.GetComponent<winchScript>().enabled = true;
+
+
             }
         }
     }

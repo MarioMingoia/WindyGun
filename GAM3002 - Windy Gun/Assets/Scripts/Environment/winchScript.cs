@@ -26,7 +26,7 @@ public class winchScript : MonoBehaviour
     {
         lrnd = GetComponent<LineRenderer>();
 
-        platOriginalPos = platform.transform.localPosition;
+        platOriginalPos = platform.transform.position;
 
     }
 
@@ -50,7 +50,7 @@ public class winchScript : MonoBehaviour
             {
                 transform.GetChild(0).transform.RotateAround(myCenter.transform.position, transform.right, myStrength * Time.deltaTime);
             }
-            platform.transform.localPosition = Vector3.MoveTowards(platform.transform.localPosition, target.transform.localPosition, myStrength / 10 * Time.deltaTime);
+            platform.transform.position = Vector3.MoveTowards(platform.transform.position, target.transform.position, myStrength / 10 * Time.deltaTime);
         }
 
         for (int i = 0; i < windy.Count; i++)
@@ -66,9 +66,9 @@ public class winchScript : MonoBehaviour
         if (windLeft == true && windy.Count <= 0 && myStrength <= 0)
         {
             transform.GetChild(0).transform.RotateAround(myCenter.transform.position, transform.right, -15 * Time.deltaTime);
-            platform.transform.localPosition = Vector3.MoveTowards(platform.transform.localPosition, platOriginalPos, 15 * Time.deltaTime);
+            platform.transform.position = Vector3.MoveTowards(platform.transform.position, platOriginalPos, 15 * Time.deltaTime);
 
-            if (Vector3.Equals(platform.transform.localPosition, platOriginalPos))
+            if (Vector3.Equals(platform.transform.position, platOriginalPos))
                 windLeft = false;
 
         }

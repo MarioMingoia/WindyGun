@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class plate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string triggerTag;
+    public Material activeWire;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        
+        if (other.gameObject.CompareTag(triggerTag))
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<Renderer>().material = activeWire;
+
+            }
+        }
     }
 }

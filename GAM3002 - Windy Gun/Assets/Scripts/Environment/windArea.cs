@@ -10,7 +10,6 @@ public class windArea : MonoBehaviour
 
     [SerializeField]
     float originalStrength;
-
     private void Start()
     {
         originalStrength = strength;
@@ -61,7 +60,7 @@ public class windArea : MonoBehaviour
 
         if (rbInWindList.Count >= 1 || other.gameObject.name.Contains("Winch"))
         {
-            strength += .1f;
+            strength += .001f;
         }
 
         if (rbObj != null && !rbInWindList.Contains(rbObj))
@@ -74,5 +73,6 @@ public class windArea : MonoBehaviour
         strength = originalStrength;
         if (rbObj != null && rbInWindList.Contains(rbObj))
             rbInWindList.Remove(rbObj);
+
     }
 }

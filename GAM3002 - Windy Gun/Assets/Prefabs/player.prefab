@@ -155,7 +155,7 @@ Camera:
   m_GameObject: {fileID: 389119167641381047}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 5
   smoothing: 2
-  uiStuff: {fileID: 0}
+  uiStuff: {fileID: 6516656902650265785}
 --- !u!81 &389119167641381044
 AudioListener:
   m_ObjectHideFlags: 0
@@ -537,7 +537,7 @@ Camera:
   m_GameObject: {fileID: 787513917017518529}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
