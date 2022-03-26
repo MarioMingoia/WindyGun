@@ -97,8 +97,6 @@ public class shootingBullets : MonoBehaviour
             chargeUp = 1;
         }
 
-        Quaternion camRot = Quaternion.Euler(cam.transform.localEulerAngles);
-
         overallRot = Quaternion.Euler(cam.transform.localEulerAngles.x, transform.eulerAngles.y, 0) ;
         if (ammo > 0 && Input.GetMouseButtonUp(0))
         {
@@ -153,7 +151,7 @@ public class shootingBullets : MonoBehaviour
 
         if (chargeUp > 1)
         {
-            rb.AddForce(force.normalized * -(chargeUp * 25));
+            rb.AddForce(force.normalized * -(chargeUp * 2 * 50));
         }
         ammo -= intapp;
 

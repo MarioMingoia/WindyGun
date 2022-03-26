@@ -16,6 +16,8 @@ public class winchRaycast : MonoBehaviour
 
     public GameObject plate;
     public GameObject winch;
+
+    public LayerMask ignoreMe;
     void Start()
     {
         ws = GetComponent<winchScript>();
@@ -42,11 +44,10 @@ public class winchRaycast : MonoBehaviour
         //has the ray go from the front of the player
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, rayDistance))
+        if (Physics.Raycast(ray, out hit, rayDistance, ~ignoreMe))
         {
             if (hit.collider.CompareTag(tagName))
             {
-
                 ws.platform = hit.transform.gameObject;
                 ws.platformLine = hit.transform.GetChild(0).gameObject;
 

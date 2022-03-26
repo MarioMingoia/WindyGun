@@ -25,8 +25,14 @@ public class winchScript : MonoBehaviour
     void Start()
     {
         lrnd = GetComponent<LineRenderer>();
+        try
+        {
+            platOriginalPos = platform.transform.position;
+        }
+        catch
+        {
 
-        platOriginalPos = platform.transform.position;
+        }
 
     }
 

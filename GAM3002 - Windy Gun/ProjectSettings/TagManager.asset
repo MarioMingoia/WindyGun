@@ -11,6 +11,7 @@ TagManager:
   - WindArea
   - Conveyor
   - PlateCube
+  - level
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Gun
   - Water
   - UI
-  - 
-  - 
+  - IgnoreMe
+  - player
   - 
   - 
   - 

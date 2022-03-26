@@ -8,7 +8,7 @@ public class stopWind : MonoBehaviour
     Collider coll;
     public Vector3 startPoint;
 
-    int projectileRange = 5;
+    public int projectileRange = 10;
 
     Rigidbody rb;
 
@@ -25,7 +25,7 @@ public class stopWind : MonoBehaviour
     {
 
         float dis = Vector3.Distance(transform.position, startPoint);
-        if (collided == true || dis > projectileRange)
+        if (collided == true || dis >= projectileRange)
         {
             rb.isKinematic = true;
             rb.useGravity = false;
