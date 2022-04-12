@@ -30,7 +30,6 @@ public class windArea : MonoBehaviour
             {
                 foreach (Rigidbody rb in rbInWindList)
                 {
-                    print(strength);
                     if (rb == null)
                     {
                         rbInWindList.Remove(rb);

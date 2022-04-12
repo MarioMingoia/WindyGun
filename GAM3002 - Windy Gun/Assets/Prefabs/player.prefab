@@ -361,6 +361,8 @@ MonoBehaviour:
   grounded: 0
   rb: {fileID: 0}
   readytoJump: 0
+  glider: {fileID: 0}
+  newGravity: 0
 --- !u!114 &2223659441486922452
 MonoBehaviour:
   m_ObjectHideFlags: 0

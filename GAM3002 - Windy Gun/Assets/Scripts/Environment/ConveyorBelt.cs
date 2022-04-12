@@ -17,7 +17,6 @@ public class ConveyorBelt : MonoBehaviour
                 if (other.gameObject.CompareTag(tags[i]))
                 {
                     other.transform.position = Vector3.MoveTowards(other.transform.position, endPoint.position, speed * Time.deltaTime);
-
                 }
 
             }

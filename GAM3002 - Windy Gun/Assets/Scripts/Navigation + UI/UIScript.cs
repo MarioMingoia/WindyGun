@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
-
-
     //UIness
     public GameObject pauseMenu;
     public bool shallIStop = false;
@@ -20,7 +18,7 @@ public class UIScript : MonoBehaviour
         Scene scenename = SceneManager.GetActiveScene();
         currentSceneName = scenename.name;
 
-        sb = GameObject.Find("player").GetComponent<shootingBullets>();
+        sb = GameObject.FindGameObjectWithTag("Player").GetComponent<shootingBullets>();
     }
 
     // Update is called once per frame

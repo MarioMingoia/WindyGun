@@ -17,6 +17,7 @@ public class movementPlayer : MonoBehaviour
     public bool readytoJump;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,8 @@ public class movementPlayer : MonoBehaviour
 
         airMovement = speed / 1.5f;
         originalSpeed = speed;
+
+
     }
 
     // Update is called once per frame
@@ -56,11 +59,15 @@ public class movementPlayer : MonoBehaviour
     {
         if (grounded && readytoJump && rb.velocity.y <= 0)
         {
-            rb.velocity = Vector3.up * jumpForce * Time.fixedDeltaTime;
+            rb.velocity = Vector3.up * jumpForce;
             grounded = false;
         }
     }
-
+    void movement(float flMove)
+    {
+        transform.Translate(Vector3.right * (Input.GetAxis("Horizontal") * flMove) * Time.deltaTime);
+        transform.Translate(Vector3.forward * (Input.GetAxis("Vertical") * flMove) * Time.deltaTime);
+    }
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("floor"))
@@ -73,12 +80,6 @@ public class movementPlayer : MonoBehaviour
             }
 
         }
-    }
-
-    void movement(float flMove)
-    {
-        transform.Translate(Vector3.right * (Input.GetAxis("Horizontal") * flMove) * Time.deltaTime);
-        transform.Translate(Vector3.forward * (Input.GetAxis("Vertical") * flMove) * Time.deltaTime);
     }
     private void OnCollisionExit(Collision collision)
     {
