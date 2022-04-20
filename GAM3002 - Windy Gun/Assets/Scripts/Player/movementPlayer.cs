@@ -15,9 +15,6 @@ public class movementPlayer : MonoBehaviour
     public bool grounded;
     public Rigidbody rb;
     public bool readytoJump;
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -57,9 +54,9 @@ public class movementPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (grounded && readytoJump && rb.velocity.y <= 0)
+        if (grounded && readytoJump && Mathf.Approximately(rb.velocity.y, 0))
         {
-            rb.velocity = Vector3.up * jumpForce;
+            rb.velocity = Vector3.up * jumpForce * Time.deltaTime;
             grounded = false;
         }
     }

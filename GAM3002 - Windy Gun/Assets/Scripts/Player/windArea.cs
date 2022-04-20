@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class windArea : MonoBehaviour
 {
     public List<Rigidbody> rbInWindList = new List<Rigidbody>();
     public float strength;
-    public Vector3 windDirection;
-
     [SerializeField]
     float originalStrength;
 
@@ -21,35 +20,44 @@ public class windArea : MonoBehaviour
         originalStrength = strength;
 
         clampedMax = originalStrength * 2;
+
+        ParticleSystem ps = transform.GetChild(0).GetComponent<ParticleSystem>();
+        var sh = ps.shape;
+        sh.scale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
     }
     private void FixedUpdate()
     {
+
         try
         {
             if (rbInWindList.Count > 0)
             {
-                foreach (Rigidbody rb in rbInWindList)
+                for (int i = 0; i < rbInWindList.Count; i++)
                 {
-                    if (rb == null)
+                    if(rbInWindList[i] != null)
                     {
-                        rbInWindList.Remove(rb);
-                    }
-
-                    if (rb.gameObject.name == "player")
-                    {
-                        Vector3 rotationInEuler = transform.rotation.eulerAngles;
-
-
-                        float tiltX = Mathf.Abs(rotationInEuler.x);
-
-                        if (tiltX > -45 && tiltX < 45 || tiltX > 315 && tiltX < 405)
+                        if (rbInWindList[i].gameObject.tag.Contains("Player") && !rbInWindList[i].gameObject.GetComponent<glider>().gliderObj.activeInHierarchy)
                         {
-                            rb.velocity = transform.forward * strength;
+                            Vector3 rotationInEuler = transform.rotation.eulerAngles;
+
+                            float tiltX = Mathf.Abs(rotationInEuler.x);
+                            if (-45 < tiltX && tiltX < 45)
+                            {
+                                rbInWindList[i].velocity = transform.forward * strength;
+                            }
+                            if (tiltX > 315 && tiltX < 360)
+                            {
+                                rbInWindList[i].velocity = transform.forward * strength;
+                            }
+                        }
+                        else if (!rbInWindList[i].gameObject.tag.Contains("Player") || rbInWindList[i].gameObject.GetComponent<glider>().gliderObj.activeInHierarchy)
+                        {
+                            rbInWindList[i].velocity = transform.forward * strength;
                         }
                     }
                     else
                     {
-                        rb.velocity = transform.forward * strength;
+                        rbInWindList.RemoveAt(i);
                     }
 
                 }
@@ -73,16 +81,35 @@ public class windArea : MonoBehaviour
             strength = Mathf.Clamp(strength, originalStrength, clampedMax);
         }
 
-        if (rbObj != null && !rbInWindList.Contains(rbObj))
+        if (rbObj != null && !rbInWindList.Contains(rbObj) && !other.gameObject.CompareTag("Spinning"))
             rbInWindList.Add(rbObj);
+
+        try
+        {
+            if (other.gameObject.CompareTag("Conveyor"))
+                rbObj.isKinematic = false;
+        }
+        catch 
+        {
+
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
+
         Rigidbody rbObj = other.gameObject.GetComponent<Rigidbody>();
+
+        try
+        {
+            if (other.gameObject.CompareTag("Conveyor"))
+                rbObj.isKinematic = true;
+        }
+        catch
+        {
+        }
         strength = originalStrength;
         if (rbObj != null && rbInWindList.Contains(rbObj))
             rbInWindList.Remove(rbObj);
-
     }
 }

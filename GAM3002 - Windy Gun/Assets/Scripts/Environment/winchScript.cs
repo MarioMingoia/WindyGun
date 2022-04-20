@@ -54,9 +54,9 @@ public class winchScript : MonoBehaviour
 
             if (!Vector3.Equals(platform.transform.position.y, target.transform.position.y))
             {
-                transform.GetChild(0).transform.RotateAround(myCenter.transform.position, transform.right, myStrength * Time.deltaTime);
+                transform.GetChild(0).transform.RotateAround(myCenter.transform.position, transform.right, myStrength * 2 * Time.deltaTime);
             }
-            platform.transform.position = Vector3.MoveTowards(platform.transform.position, target.transform.position, myStrength / 10 * Time.deltaTime);
+            platform.transform.position = Vector3.MoveTowards(platform.transform.position, target.transform.position, myStrength * Time.deltaTime);
         }
 
         for (int i = 0; i < windy.Count; i++)

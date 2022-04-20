@@ -95,12 +95,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53bf9962fc23cc47a81303d42bea413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startShrinking: 0
+  raycastCheck: 0
   rayFrom: {fileID: 7153912380826520075}
   tagstoAvoid:
   - Player
   - WindArea
   - level
+  - Conveyor
   - floor
+  - PlateCube
   ignoreMe:
     serializedVersion: 2
     m_Bits: 192
@@ -277,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7153912380826520075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.13, z: -0.489}
+  m_LocalPosition: {x: 0, y: 0, z: -0.489}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3886908426232229855}

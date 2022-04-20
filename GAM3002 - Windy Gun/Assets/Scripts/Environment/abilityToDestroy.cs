@@ -8,21 +8,21 @@ public class abilityToDestroy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("WindArea"))
+        if (other.gameObject.tag.Contains("WindArea"))
         {
             canDestroy = true;
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name.Contains("WindArea"))
+        if (other.gameObject.tag.Contains("WindArea"))
         {
             canDestroy = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name.Contains("WindArea"))
+        if (other.gameObject.tag.Contains("WindArea"))
         {
             StartCoroutine(waittillDestroyed());
         }

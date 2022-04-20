@@ -8,7 +8,16 @@ public class NextLevel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            int middleChild = other.transform.childCount / 2;
+            int middleChild = 0;
+
+            for (int i = 0; i < other.transform.childCount; i++)
+            {
+                if (other.transform.GetChild(i).name.Contains("ScriptController"))
+                {
+                    middleChild = i;    
+                }
+            }
+            
             DontDestroyOnLoad(other.gameObject);
             other.transform.GetChild(middleChild).GetComponent<mainMenu>().nextScene();
         }

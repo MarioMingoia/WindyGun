@@ -34,6 +34,8 @@ public class shootingBullets : MonoBehaviour
 
     public int windMultiplyer;
     public bool recall;
+
+    public Text strengthDis;
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +99,8 @@ public class shootingBullets : MonoBehaviour
             chargeUp = 1;
         }
 
+        strengthDis.text = chargeUp.ToString();
+
         overallRot = Quaternion.Euler(cam.transform.localEulerAngles.x, transform.eulerAngles.y, 0) ;
         if (ammo > 0 && Input.GetMouseButtonUp(0))
         {
@@ -143,8 +147,6 @@ public class shootingBullets : MonoBehaviour
         Vector3 force = transform.position - goBullet.transform.position;
 
         goBullet.GetComponent<windArea>().strength = chargeUp * windMultiplyer;
-        goBullet.AddComponent<BounceOff>();
-        goBullet.GetComponent<BounceOff>().me = bullet;
 
         goBullet.name = goBullet.name.Replace("(Clone)", nameofMine);
         amtofWind.Add(goBullet);

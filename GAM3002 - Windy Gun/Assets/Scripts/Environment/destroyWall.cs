@@ -7,6 +7,7 @@ public class destroyWall : MonoBehaviour
     bool destroy = false;
 
     public string collisionTag;
+
     private void Update()
     {
         try
@@ -19,7 +20,8 @@ public class destroyWall : MonoBehaviour
                     transform.GetChild(i).parent = null;
 
                     explosive.GetComponent<Rigidbody>().constraints = ~RigidbodyConstraints.FreezeAll;
-                    explosive.GetComponent<Rigidbody>().AddExplosionForce(5, explosive.transform.position, 50, 3);
+                    explosive.GetComponent<BoxCollider>().enabled = true;
+                    explosive.GetComponent<Rigidbody>().AddExplosionForce(5, transform.position, 50, 3);
                 }
                 if (transform.childCount <= 0)
                 {
@@ -39,7 +41,9 @@ public class destroyWall : MonoBehaviour
         if (collision.gameObject.tag.Contains(collisionTag))
         {
             if (collision.gameObject.GetComponent<abilityToDestroy>().canDestroy)
+            {
                 destroy = true;
+            }
         }
     }
 

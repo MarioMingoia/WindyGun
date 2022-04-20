@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class windScaling : MonoBehaviour
 {
-    bool startShrinking;
-    bool raycastCheck;
+    public bool startShrinking;
+    public bool raycastCheck;
     Vector3 originalSize;
     Vector3 newSize;
     Vector3 originalPos;
@@ -38,12 +38,12 @@ public class windScaling : MonoBehaviour
         racyastStuff();
         if (startShrinking && raycastCheck)
         {
-            Resize(.01f, dir, scaleDir);
+            Resize(-1f, dir, scaleDir);
         }
         else if (!raycastCheck)
         {
             if (transform.localScale.z <= distanceMax)
-                Resize(-.01f, dir, scaleDir);
+                Resize(1f, dir, scaleDir);
         }
     }
 

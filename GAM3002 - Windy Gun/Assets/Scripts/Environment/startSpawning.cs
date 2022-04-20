@@ -13,8 +13,6 @@ public class startSpawning : MonoBehaviour
     public float countdown;
     private float myCountdown;
 
-    int itemtoSpawn = 1;
-
     bool ontrigger;
 
     private void Update()

@@ -12,6 +12,7 @@ TagManager:
   - Conveyor
   - PlateCube
   - level
+  - Spinning
   layers:
   - Default
   - TransparentFX
