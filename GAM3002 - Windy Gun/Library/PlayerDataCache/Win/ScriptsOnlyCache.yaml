@@ -16,6 +16,7 @@ ScriptsOnlyBuild:
     - door
     - glider
     - gliderPillar
+    - lookatPlayer
     - mainMenu
     - movementPlayer
     - openChest
@@ -25,6 +26,7 @@ ScriptsOnlyBuild:
     - stairs
     - startSpawning
     - stopPush
+    - textEnabler
     - winchRaycast
     - winchScript
     - windArea
@@ -92,6 +94,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -101,9 +105,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1474}
     - Class: 114
-      Script: {instanceID: 1520}
+      Script: {instanceID: 1518}
     - Class: 114
-      Script: {instanceID: 1530}
+      Script: {instanceID: 1528}
     - Class: 114
       Script: {instanceID: 1586}
     - Class: 114
@@ -160,6 +164,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4352}
     - Class: 114
       Script: {instanceID: 4414}
+    - Class: 114
+      Script: {instanceID: 36844}
+    - Class: 114
+      Script: {instanceID: 174508}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -225,12 +233,14 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1520}
+      Script: {instanceID: 1518}
     - Class: 114
       Script: {instanceID: 1772}
     - Class: 114
@@ -259,9 +269,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4274}
     - Class: 114
       Script: {instanceID: 4320}
+    - Class: 114
+      Script: {instanceID: 36844}
+    - Class: 114
+      Script: {instanceID: 174508}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -306,14 +322,16 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1488}
+      Script: {instanceID: 1486}
     - Class: 114
-      Script: {instanceID: 1534}
+      Script: {instanceID: 1532}
     - Class: 114
       Script: {instanceID: 1976}
     - Class: 114
@@ -338,9 +356,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4274}
     - Class: 114
       Script: {instanceID: 4320}
+    - Class: 114
+      Script: {instanceID: 36844}
+    - Class: 114
+      Script: {instanceID: 174508}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -386,7 +410,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1474}
     - Class: 114
-      Script: {instanceID: 1530}
+      Script: {instanceID: 1528}
     - Class: 114
       Script: {instanceID: 2288}
     - Class: 114
@@ -464,6 +488,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.ProBuilder.dll
     namespaceName: UnityEngine.ProBuilder
     className: ColliderBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: aa811c0bd10006dad25e3c83c6fca0ca
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WPConveyor
   - hash:
       serializedVersion: 2
       Hash: 77aaaaa51f7a8d8ff333a879741e47d2
@@ -1078,14 +1108,20 @@ ScriptsOnlyBuild:
     className: camMoveV2
   - hash:
       serializedVersion: 2
-      Hash: aa811c0bd10006dad25e3c83c6fca0ca
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: WPConveyor
+    className: lookatPlayer
+  - hash:
+      serializedVersion: 2
+      Hash: b8d00296aaf570e6624efec2235fb9a0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: textEnabler
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Level1.unity
   - Assets/Scenes/Level2.unity
   - Assets/Scenes/Level3.unity
-  playerPath: D:/GameDev/Uni/WindyGun Playtest 2/GAM3002 - Windy Gun.exe
+  playerPath: D:/GameDev/Uni/WindyGun Playtest 2 wnarrative/GAM3002 - Windy Gun.exe
