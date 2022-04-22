@@ -81,7 +81,7 @@ public class windArea : MonoBehaviour
             strength = Mathf.Clamp(strength, originalStrength, clampedMax);
         }
 
-        if (rbObj != null && !rbInWindList.Contains(rbObj) && !other.gameObject.CompareTag("Spinning"))
+        if (rbObj != null && !rbInWindList.Contains(rbObj) && !other.gameObject.CompareTag("Spinning") && !other.gameObject.CompareTag("WindArea"))
             rbInWindList.Add(rbObj);
 
         try

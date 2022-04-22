@@ -118,7 +118,7 @@ public class shootingBullets : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Chests"))
         {
-            if (other.gameObject.GetComponent<openChest>().enabled == false && other.gameObject.GetComponent<openChest>().refillPoint > 0)
+            if (other.gameObject.GetComponent<openChest>().enabled == false && other.gameObject.GetComponent<openChest>().refillPoint >= 0)
             {
                 recall = true;
                 other.gameObject.GetComponent<openChest>().enabled = true;

@@ -8,16 +8,24 @@ public class destroyWall : MonoBehaviour
 
     public string collisionTag;
 
+    public bool shatter;
     private void Update()
     {
         try
         {
+
             if (destroy)
             {
+
                 for (int i = 0; i < transform.childCount; i++)
                 {
                     GameObject explosive = transform.GetChild(i).gameObject;
                     transform.GetChild(i).parent = null;
+
+                    if (shatter)
+                    {
+                        Destroy(explosive);
+                    }
 
                     explosive.GetComponent<Rigidbody>().constraints = ~RigidbodyConstraints.FreezeAll;
                     explosive.GetComponent<BoxCollider>().enabled = true;

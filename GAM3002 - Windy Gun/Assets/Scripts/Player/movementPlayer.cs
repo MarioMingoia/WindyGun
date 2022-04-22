@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class movementPlayer : MonoBehaviour
 {
+    float playerHeight = 2f;
     // movement
     public float speed;
     private float originalSpeed;

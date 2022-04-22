@@ -361,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   jumpForce: 500
-  airMovement: 0
+  airMovement: 1
   grounded: 0
   rb: {fileID: 0}
   readytoJump: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
   gliderActive: 0
   fallSpeed: 0.19
   rb: {fileID: 0}
-  countdown: 10
+  countdown: 30
   myCD: 0
   startCD: 0
   sliderDisplay: {fileID: 1676638807314455444}

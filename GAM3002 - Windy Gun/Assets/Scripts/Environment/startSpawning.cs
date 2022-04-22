@@ -15,6 +15,11 @@ public class startSpawning : MonoBehaviour
 
     bool ontrigger;
 
+    private void Start()
+    {
+        myCountdown = countdown;
+    }
+
     private void Update()
     {
         if (ontrigger && startSpawningBool)
