@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class movementPlayer : MonoBehaviour
 {
-    float playerHeight = 2f;
     // movement
     public float speed;
     private float originalSpeed;
-    bool isSprint;
 
     // Jump
     public float jumpForce;
@@ -40,7 +38,6 @@ public class movementPlayer : MonoBehaviour
         if (grounded)
         {
             movement(speed);
-
         }
         else
         {
