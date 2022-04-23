@@ -14,6 +14,9 @@ public class lookatPlayer : MonoBehaviour
     void Update()
     {
         transform.GetChild(0).LookAt(new Vector3(2 * transform.GetChild(0).position.x - player.transform.position.x, transform.GetChild(0).position.y, 2 * transform.GetChild(0).position.z - player.transform.position.z));
+
+        //transform.GetChild(0).rotation = Quaternion.LookRotation(transform.GetChild(0).position - player.transform.position);
+
     }
 
     private void OnTriggerEnter(Collider other)
