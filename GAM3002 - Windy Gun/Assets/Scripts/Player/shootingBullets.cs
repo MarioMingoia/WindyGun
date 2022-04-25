@@ -144,7 +144,7 @@ public class shootingBullets : MonoBehaviour
         goBullet.AddComponent<stopWind>();
         goBullet.GetComponent<Rigidbody>().AddForce(firePos.transform.forward * 1000);
 
-        Vector3 force = transform.position - goBullet.transform.position;
+        Vector3 force = transform.position + goBullet.transform.position;
 
         goBullet.GetComponent<windArea>().strength = chargeUp * windMultiplyer;
 

@@ -10,9 +10,13 @@ public class TextSpawnIn : MonoBehaviour
     public GameObject buttons;
     public GameObject endpoint;
 
-    float speed = 0.75f;
+    float speed = 2f;
+    float slowSpeed;
     // Start is called before the first frame update
-
+    private void Start()
+    {
+        slowSpeed = speed / 2;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -27,7 +31,7 @@ public class TextSpawnIn : MonoBehaviour
 
             if (spawnInChecker != null)
             {
-                spawnInChecker.transform.position = Vector3.MoveTowards(spawnInChecker.transform.position, endpoint.transform.position, .5f);
+                spawnInChecker.transform.position = Vector3.MoveTowards(spawnInChecker.transform.position, endpoint.transform.position, speed);
                 if (Vector3.Distance(spawnInChecker.transform.position, endpoint.transform.position) <= 1f)
                 {
                     Destroy(spawnInChecker);
@@ -37,7 +41,7 @@ public class TextSpawnIn : MonoBehaviour
                 { 
                     buttons.SetActive(true);
 
-                speed = Mathf.Lerp(speed, 0.5f, Time.deltaTime);
+                speed = Mathf.Lerp(speed, slowSpeed, Time.deltaTime);
 
                 }
             }
