@@ -8,11 +8,16 @@ public class freecam : MonoBehaviour
 
     Vector2 smoothV;
 
-    public float sensitivity = 5.0f;
+    public float XAxisSensitivity = 5.0f;
+    public float YAxisSensitivity = 5.0f;
+    private float _rotationX;
+    [Range(0, 89)] public float MaxXAngle = 60f;
 
     public float smoothing = 2.0f;
 
     public float speed;
+
+    public GameObject uiStuff;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,22 +33,29 @@ public class freecam : MonoBehaviour
 
     void cameraLook()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        if (!uiStuff.activeInHierarchy)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            var rotationHorizontal = XAxisSensitivity * Input.GetAxis("Mouse X");
+            var rotationVertical = YAxisSensitivity * Input.GetAxis("Mouse Y");
 
-        md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
+            //applying mouse rotation
+            // always rotate Y in global world space to avoid gimbal lock
+            transform.Rotate(Vector3.up * rotationHorizontal, Space.World);
 
-        smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
+            var rotationY = transform.localEulerAngles.y;
 
-        smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
+            _rotationX += rotationVertical;
+            _rotationX = Mathf.Clamp(_rotationX, -MaxXAngle, MaxXAngle);
 
-        mouseLook += smoothV;
-
-        mouseLook.y = Mathf.Clamp(mouseLook.y, -90f, 90f);
-
-        transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        transform.localRotation = Quaternion.AngleAxis(mouseLook.x, Vector3.up);
+            transform.localEulerAngles = new Vector3(-_rotationX, rotationY, 0);
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     void movement(float flMove)

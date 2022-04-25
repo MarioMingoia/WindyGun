@@ -6,7 +6,7 @@ public class movementPlayer : MonoBehaviour
 {
     // movement
     public float speed;
-    private float originalSpeed;
+    public float originalSpeed;
 
     // Jump
     public float jumpForce;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class camSwitcher : MonoBehaviour
 {
     public GameObject player;
+    public GameObject maincam;
     public GameObject freeCam;
 
     bool camSwitchBool;
@@ -21,14 +22,16 @@ public class camSwitcher : MonoBehaviour
         {
             if (camSwitchBool)
             {
-                player.SetActive(false);
+                player.GetComponent<movementPlayer>().enabled = false;
                 freeCam.SetActive(true);
+                maincam.SetActive(false);
                 camSwitchBool = false;
             }
             else if (!camSwitchBool)
             {
-                player.SetActive(true);
+                player.GetComponent<movementPlayer>().enabled = true;
                 freeCam.SetActive(false);
+                maincam.SetActive(true);
                 camSwitchBool = true;
             }
         }
