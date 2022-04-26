@@ -159,33 +159,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3108}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3172}
     - Class: 114
-      Script: {instanceID: 3498}
+      Script: {instanceID: 3250}
     - Class: 114
-      Script: {instanceID: 3524}
+      Script: {instanceID: 3500}
     - Class: 114
-      Script: {instanceID: 3718}
+      Script: {instanceID: 3526}
     - Class: 114
-      Script: {instanceID: 3868}
+      Script: {instanceID: 3720}
     - Class: 114
-      Script: {instanceID: 3956}
+      Script: {instanceID: 3870}
     - Class: 114
-      Script: {instanceID: 4040}
+      Script: {instanceID: 3958}
     - Class: 114
-      Script: {instanceID: 4158}
+      Script: {instanceID: 4042}
     - Class: 114
-      Script: {instanceID: 4224}
+      Script: {instanceID: 4160}
     - Class: 114
-      Script: {instanceID: 4308}
+      Script: {instanceID: 4226}
     - Class: 114
-      Script: {instanceID: 4354}
+      Script: {instanceID: 4310}
     - Class: 114
-      Script: {instanceID: 4386}
+      Script: {instanceID: 4356}
     - Class: 114
-      Script: {instanceID: 4448}
+      Script: {instanceID: 4388}
     - Class: 114
-      Script: {instanceID: 21728}
+      Script: {instanceID: 4450}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -280,23 +280,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2936}
     - Class: 114
-      Script: {instanceID: 3200}
+      Script: {instanceID: 3202}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3250}
     - Class: 114
-      Script: {instanceID: 3524}
+      Script: {instanceID: 3526}
     - Class: 114
-      Script: {instanceID: 3868}
+      Script: {instanceID: 3870}
     - Class: 114
-      Script: {instanceID: 3956}
+      Script: {instanceID: 3958}
     - Class: 114
-      Script: {instanceID: 4066}
+      Script: {instanceID: 4068}
     - Class: 114
-      Script: {instanceID: 4158}
+      Script: {instanceID: 4160}
     - Class: 114
-      Script: {instanceID: 4308}
+      Script: {instanceID: 4310}
     - Class: 114
-      Script: {instanceID: 4354}
+      Script: {instanceID: 4356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -377,25 +377,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2952}
     - Class: 114
-      Script: {instanceID: 3200}
+      Script: {instanceID: 3202}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3250}
     - Class: 114
-      Script: {instanceID: 3268}
+      Script: {instanceID: 3270}
     - Class: 114
-      Script: {instanceID: 3524}
+      Script: {instanceID: 3526}
     - Class: 114
-      Script: {instanceID: 3868}
+      Script: {instanceID: 3870}
     - Class: 114
-      Script: {instanceID: 3956}
+      Script: {instanceID: 3958}
     - Class: 114
-      Script: {instanceID: 4066}
+      Script: {instanceID: 4068}
     - Class: 114
-      Script: {instanceID: 4158}
+      Script: {instanceID: 4160}
     - Class: 114
-      Script: {instanceID: 4308}
+      Script: {instanceID: 4310}
     - Class: 114
-      Script: {instanceID: 4354}
+      Script: {instanceID: 4356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -470,9 +470,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3108}
     - Class: 114
-      Script: {instanceID: 3790}
+      Script: {instanceID: 3792}
     - Class: 114
-      Script: {instanceID: 4034}
+      Script: {instanceID: 4036}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -660,7 +660,7 @@ ScriptsOnlyBuild:
     className: lookatPlayer
   - hash:
       serializedVersion: 2
-      Hash: 367ebe9d3f8c9238a838bc110ed529b1
+      Hash: 41a602c53eb440b791cfc23802679dd9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: movementPlayer
@@ -732,7 +732,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 84aa3d4eea560310e49eb1a212a5b7db
+      Hash: 0c47724ae539342359d0d7cf49b4f979
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: freecam
@@ -904,6 +904,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: BaseInput
+  - hash:
+      serializedVersion: 2
+      Hash: ac167de037df54daa49c2ec86aa64afd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: camSwitcher
   - hash:
       serializedVersion: 2
       Hash: a3688dab5a49d5a890dc72aac7339d31
@@ -1174,12 +1180,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: camMoveV2
-  - hash:
-      serializedVersion: 2
-      Hash: 41bedad16bd412249f76f08d24b775af
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: camSwitcher
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
