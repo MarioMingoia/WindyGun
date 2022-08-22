@@ -23,6 +23,8 @@ public class glider : MonoBehaviour
 
     movementPlayer mp;
 
+    public bool active;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,9 @@ public class glider : MonoBehaviour
         myCD = countdown;
 
         mp = GetComponent<movementPlayer>();
+
+        active = gameObject.GetComponent<glider>().enabled;
+
     }
 
     // Update is called once per frame
@@ -81,7 +86,7 @@ public class glider : MonoBehaviour
         else
         {
             startCD = false;
-            mp.airMovement = 0;
+            mp.airMovement = 4;
         }
 
         if (startCD)

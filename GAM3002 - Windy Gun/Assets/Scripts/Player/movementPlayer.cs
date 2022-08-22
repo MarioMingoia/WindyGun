@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class movementPlayer : MonoBehaviour
 {
     // movement
     public float speed;
     public float originalSpeed;
+    public float sprintSpeed;
 
     // Jump
     public float jumpForce;
@@ -22,7 +22,7 @@ public class movementPlayer : MonoBehaviour
         airMovement = speed / 1.5f;
         originalSpeed = speed;
 
-
+        sprintSpeed = speed * 1.5f;
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class movementPlayer : MonoBehaviour
     {
         //sprint
         if (Input.GetKeyDown(KeyCode.LeftControl))
-            speed *= 1.5f;
+            speed = sprintSpeed;
         if (Input.GetKeyUp(KeyCode.LeftControl))
             speed = originalSpeed;
 

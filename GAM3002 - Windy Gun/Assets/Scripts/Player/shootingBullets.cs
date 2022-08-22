@@ -11,6 +11,7 @@ public class shootingBullets : MonoBehaviour
     public int fullAmmo;
 
     public GameObject firePos;
+    public GameObject gun;
     public GameObject bullet;
 
     public GameObject cam;
@@ -36,6 +37,8 @@ public class shootingBullets : MonoBehaviour
     public bool recall;
 
     public Text strengthDis;
+
+    public bool active;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,11 @@ public class shootingBullets : MonoBehaviour
         countdown = 0;
 
         recall = false;
+
+        firePos.SetActive(true);
+        gun.SetActive(true);
+
+        active = gameObject.GetComponent<shootingBullets>().enabled;
     }
 
     // Update is called once per frame

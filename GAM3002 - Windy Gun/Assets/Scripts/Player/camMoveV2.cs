@@ -15,12 +15,14 @@ public float smoothing = 2.0f;
 GameObject character;
 
 	public GameObject uiStuff;
+	public GameObject accessMenu;
 
 // Use this for initialization
 
 	void Start()
 	{
 	character = this.transform.parent.gameObject;
+
 	}
 
 // Update is called once per frame
@@ -28,7 +30,8 @@ GameObject character;
 	void Update()
 	{
 
-		if (!uiStuff.activeInHierarchy)
+
+		if (!uiStuff.activeInHierarchy && !accessMenu.activeInHierarchy)
 		{
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;

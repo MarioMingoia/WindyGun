@@ -12,6 +12,9 @@ public class door : MonoBehaviour
     string tagName;
 
     bool close;
+    public bool toclose;
+
+    public AudioSource aS;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +25,15 @@ public class door : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (close)
-            doorObj.transform.localPosition = Vector3.MoveTowards(doorObj.transform.localPosition, original, 5f * Time.deltaTime);
+        if (close && toclose)
+        {
+            doorObj.transform.localPosition = Vector3.MoveTowards(doorObj.transform.localPosition, original, 1.5f * Time.deltaTime);
+        }
+        if (Vector3.Distance(doorObj.transform.localPosition, original) <= 0.1f && toclose)
+        {
+            aS.Stop();
+            toclose = false;
+        }
     }
     private void OnTriggerStay(Collider other)
     {
@@ -31,11 +41,13 @@ public class door : MonoBehaviour
         {
             doorObj.transform.localPosition = Vector3.MoveTowards(doorObj.transform.localPosition, target.transform.localPosition, 1f * Time.deltaTime);
             close = false;
+            toclose = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         close = true;
+        aS.Play();
     }
 }

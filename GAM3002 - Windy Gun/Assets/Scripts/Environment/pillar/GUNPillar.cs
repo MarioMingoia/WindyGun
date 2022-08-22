@@ -5,7 +5,6 @@ using UnityEngine;
 public class GUNPillar : MonoBehaviour
 {
     public Vector3 myCenter;
-    public GameObject plrGun, firePos;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +23,6 @@ public class GUNPillar : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             transform.GetChild(0).gameObject.SetActive(false);
-            plrGun.SetActive(true);
-            firePos.SetActive(true);
             other.gameObject.GetComponent<shootingBullets>().enabled = true;
         }
     }

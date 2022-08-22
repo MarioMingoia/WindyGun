@@ -12,6 +12,8 @@ public class windArea : MonoBehaviour
     float clampedMax;
     //raycast
     float raycastLength;
+    [SerializeField]
+    bool meshSee;
     private void Start()
     {
         originalStrength = strength;
@@ -20,9 +22,24 @@ public class windArea : MonoBehaviour
         ParticleSystem ps = transform.GetChild(0).GetComponent<ParticleSystem>();
         var sh = ps.shape;
         sh.scale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
+
+
+
+
     }
     private void FixedUpdate()
     {
+        GameObject go = GameObject.Find("Accessibility");
+        meshSee = go.GetComponent<accessibilityOptions>().seeWind;
+        if (!meshSee)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().enabled = true;
+
+        }
         try
         {
             if (rbInWindList.Count > 0)
