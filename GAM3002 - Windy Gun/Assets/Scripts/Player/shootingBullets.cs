@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.InputSystem;
+
 public class shootingBullets : MonoBehaviour
 {
     public Text ammoCount;
@@ -29,16 +31,49 @@ public class shootingBullets : MonoBehaviour
     private float myCountdown;
 
     Quaternion overallRot;
-    int intapp;
+    int intapp = 1;
     
     public List<GameObject> amtofWind;
 
     public int windMultiplyer;
     public bool recall;
+    bool canRecall;
 
     public Text strengthDis;
 
     public bool active;
+
+    GameObject access;
+
+    public void onShoot(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (ammo > 0)
+            {
+                isDown = true;
+                countdown = myCountdown;
+            }
+        }
+
+        if (context.canceled)
+        {
+            if (ammo > 0)
+            {
+                shooting(false, " don't Rotate");
+            }
+        }    
+    }
+    public void onChangeSizeofWind(InputAction.CallbackContext context)
+    {
+        app += (context.ReadValue<Vector2>().y / 120) * sensitivity;
+        app = Mathf.Clamp(app, minimum, ammo);
+        intapp = Mathf.RoundToInt(app);
+    }
+    public void onRecall(InputAction.CallbackContext context)
+    {
+        canRecall = true;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -57,27 +92,15 @@ public class shootingBullets : MonoBehaviour
         gun.SetActive(true);
 
         active = gameObject.GetComponent<shootingBullets>().enabled;
+
+        access = transform.GetChild(4).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        app += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
-        app = Mathf.Clamp(app, minimum, ammo);
-        intapp = Mathf.RoundToInt(app);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (ammo > 0)
-            {
-                isDown = true;
-                countdown = myCountdown;
-            }
-
-        }
-
-        if(recall)
+        if (recall)
         {
             for (int i = 0; i < amtofWind.Count; i++)
             {
@@ -110,10 +133,7 @@ public class shootingBullets : MonoBehaviour
         strengthDis.text = chargeUp.ToString();
 
         overallRot = Quaternion.Euler(cam.transform.localEulerAngles.x, transform.eulerAngles.y, 0) ;
-        if (ammo > 0 && Input.GetMouseButtonUp(0))
-        {
-            shooting(false, " don't Rotate");
-        }
+        
 
         if (ammo > fullAmmo)
         {
@@ -122,6 +142,7 @@ public class shootingBullets : MonoBehaviour
         ammo = Mathf.Clamp(ammo, 0, fullAmmo);
         ammoCount.text = (ammo + " / " + fullAmmo).ToString();
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Chests"))
@@ -132,10 +153,11 @@ public class shootingBullets : MonoBehaviour
                 other.gameObject.GetComponent<openChest>().enabled = true;
                 fullAmmo = other.gameObject.GetComponent<openChest>().refillPoint;
                 ammo = fullAmmo;
+                
            }
             else if (other.gameObject.GetComponent<openChest>().refillPoint <= 0)
             {
-                if(Input.GetKeyUp(KeyCode.R))
+                if(canRecall)
                 {
                     recall = true;
                 }
@@ -163,7 +185,9 @@ public class shootingBullets : MonoBehaviour
         {
             rb.AddForce(force.normalized * -(chargeUp * 2 * 50));
         }
-        ammo -= intapp;
+
+        if (!access.GetComponent<accessibilityOptions>().isInfinite)
+            ammo -= intapp;
 
         intapp = 1;
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class movementPlayer : MonoBehaviour
 {
     // movement
@@ -14,6 +15,8 @@ public class movementPlayer : MonoBehaviour
     public bool grounded;
     public Rigidbody rb;
     public bool readytoJump;
+
+
     // Start is called before the first frame update
     void Start()
     {

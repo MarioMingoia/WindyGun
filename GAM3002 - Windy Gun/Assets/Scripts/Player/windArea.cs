@@ -13,7 +13,6 @@ public class windArea : MonoBehaviour
     //raycast
     float raycastLength;
     [SerializeField]
-    bool meshSee;
     private void Start()
     {
         originalStrength = strength;
@@ -29,56 +28,11 @@ public class windArea : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        GameObject go = GameObject.Find("Accessibility");
-        meshSee = go.GetComponent<accessibilityOptions>().seeWind;
-        if (!meshSee)
-        {
+        if (PlayerPrefs.GetInt("ToggleBool6") == 1)
             GetComponent<MeshRenderer>().enabled = false;
-        }
         else
-        {
             GetComponent<MeshRenderer>().enabled = true;
 
-        }
-        try
-        {
-            if (rbInWindList.Count > 0)
-            {
-                for (int i = 0; i < rbInWindList.Count; i++)
-                {
-                    if(rbInWindList[i] != null)
-                    {
-                        //if tag is player and glider isn't active, player can't rise when wind is facing is certain direction
-                        if (rbInWindList[i].gameObject.tag.Contains("Player") && !rbInWindList[i].gameObject.GetComponent<glider>().gliderObj.activeInHierarchy)
-                        {
-                            Vector3 rotationInEuler = transform.rotation.eulerAngles;
-
-                            float tiltX = Mathf.Abs(rotationInEuler.x);
-                            if (-45 < tiltX && tiltX < 45)
-                            {
-                                rbInWindList[i].velocity = transform.forward * strength;
-                            }
-                            if (tiltX > 315 && tiltX < 360)
-                            {
-                                rbInWindList[i].velocity = transform.forward * strength;
-                            }
-                        }
-                        //if tag isn't player or the player has an active glider, player can rise
-                        else if (!rbInWindList[i].gameObject.tag.Contains("Player") || rbInWindList[i].gameObject.GetComponent<glider>().gliderObj.activeInHierarchy)
-                        {
-                            rbInWindList[i].velocity = transform.forward * strength;
-                        }
-                    }
-                    else
-                    {
-                        rbInWindList.RemoveAt(i);
-                    }
-                }
-            }
-        }
-        catch 
-        {
-        }       
     }
     private void OnTriggerStay(Collider other)
     {
@@ -99,10 +53,52 @@ public class windArea : MonoBehaviour
             //disables conveyor kinematic when in zone
             if (other.gameObject.CompareTag("Conveyor"))
                 rbObj.isKinematic = false;
+
+            if (rbInWindList.Count > 0)
+            {
+                for (int i = 0; i < rbInWindList.Count; i++)
+                {
+                    if (rbInWindList[i] != null)
+                    {
+                        //if tag is player and glider isn't active, player can't rise when wind is facing is certain direction
+                        print("trigger");
+
+                        if (rbInWindList[i].gameObject.tag.Contains("Player") && rbInWindList[i].gameObject.GetComponent<glider>().isActiveAndEnabled == false)
+                        {
+                            Vector3 rotationInEuler = transform.rotation.eulerAngles;
+                            print("123");
+                            float tiltX = Mathf.Abs(rotationInEuler.x);
+                            if (-45 < tiltX && tiltX < 45)
+                            {
+                                rbInWindList[i].AddForce(transform.forward * (strength * 10));
+                            }
+                            if (tiltX > 315 && tiltX < 360)
+                            {
+                                rbInWindList[i].AddForce(transform.forward * (strength * 10));
+                            }
+                        }
+
+                        //if tag isn't player or the player has an active glider, player can rise
+                        else if (!rbInWindList[i].gameObject.tag.Contains("Player"))
+                        {
+                            rbInWindList[i].AddForce(transform.forward * (strength * 10));
+                        }
+                        else if (rbInWindList[i].gameObject.GetComponent<glider>().gliderObj.activeInHierarchy)
+                        {
+                            rbInWindList[i].AddForce(transform.forward * (strength * 10));
+                        }
+                    }
+                    else
+                    {
+                        rbInWindList.RemoveAt(i);
+                    }
+                }
+            }
         }
         catch 
         {
         }
+
     }
     private void OnTriggerExit(Collider other)
     {
