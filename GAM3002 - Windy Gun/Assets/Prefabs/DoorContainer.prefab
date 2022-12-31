@@ -50,8 +50,8 @@ MonoBehaviour:
   target: {fileID: 7397287986956150432}
   original: {x: 0, y: 0, z: 0}
   tagName: Player
+  toclose: 0
   aS: {fileID: 271237360150374622}
-  ac: {fileID: 8300000, guid: b31f8c30d64943f42969bdd2ffcea645, type: 3}
 --- !u!65 &7397287986419296557
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74,6 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7397287986956150433}
+  - component: {fileID: 13230295542389015}
   - component: {fileID: 271237360150374622}
   m_Layer: 0
   m_Name: GameObject
@@ -96,6 +97,21 @@ Transform:
   m_Father: {fileID: 7397287986419296559}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &13230295542389015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397287986956150432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086126e4df202f5419209f6b6da10e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accessibility: {fileID: 0}
+  typeOfAudio: 2
+  myAudioSource: {fileID: 0}
 --- !u!82 &271237360150374622
 AudioSource:
   m_ObjectHideFlags: 0

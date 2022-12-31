@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.InputSystem;
+
 public class glider : MonoBehaviour
 {
     public GameObject gliderObj;
@@ -38,6 +40,14 @@ public class glider : MonoBehaviour
 
     }
 
+    public void onGlider(InputAction.CallbackContext context)
+    {
+        if (gliderActive)
+            gliderActive = false;
+        else if (!gliderActive)
+            gliderActive = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -46,13 +56,6 @@ public class glider : MonoBehaviour
         gliderObj.SetActive(gliderActive);
         sliderDisplay.SetActive(gliderActive);
 
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            if (gliderActive)
-                gliderActive = false;
-            else if (!gliderActive)
-                gliderActive = true;
-        }
 
         if (startIncrease)
         {

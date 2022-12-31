@@ -6,11 +6,25 @@ using UnityEngine.UI;
 
 public class accessibilityOptions : MonoBehaviour
 {
-    [Header("Misc Accessibility options")]
+    [Header("Gameplay")]
     public bool seeWind;
     public Toggle windToggle;
+    [SerializeField]
+    private Toggle hintToggle;
+    [SerializeField]
+    private Dropdown ammoDropDown;
+    public bool isInfinite;
+    public int multiplyer;
+
+    [Header("Subtitles")]
     public GameObject subtitles;
     public Toggle subToggle;
+    [SerializeField]
+    private Dropdown subDropDown;
+    public Texture subNormal;
+    public Texture subNormalInverted;
+    public Texture subHighlight;
+    public Texture subHighlightInverted;
 
     [Header("Colourblindness toggles")]
     //colourblind options
@@ -76,6 +90,42 @@ public class accessibilityOptions : MonoBehaviour
     public Color windDeutan;
     public Color windTritan;
     public Color windMono;
+
+    //applied in camera
+    [Header("Inverts")]
+    [SerializeField]
+    private Toggle horizontalToggle;
+    [SerializeField]
+    private Toggle verticalToggle;
+
+    //applied in camera
+    [Header("Sensitivty")]
+    [SerializeField]
+    private Slider senSlider;
+    [SerializeField]
+    private Text senText;
+
+    //applied in camera
+    [SerializeField]
+    private Toggle windowedToggle;
+
+    //applied in camera
+    [Header("fov")]
+    [SerializeField]
+    private Slider fovSlider;
+    [SerializeField]
+    private Text fovText;
+
+    [Header("Volume")]
+    public Slider BGMSlider;
+    [SerializeField]
+    private Text BGMText;
+    public Slider VoiceSlider;
+    [SerializeField]
+    private Text VoiceText;
+    public Slider effectsSlider;
+    [SerializeField]
+    private Text effectsText;
     void Start()
     {
         //player prefs store preferences of player between sessions
@@ -114,6 +164,48 @@ public class accessibilityOptions : MonoBehaviour
         else
             subToggle.isOn = false;
         
+        if (PlayerPrefs.GetInt("ToggleBool6") == 1)
+            windToggle.isOn = true;
+        else
+            windToggle.isOn = false; 
+        
+        if (PlayerPrefs.GetInt("ToggleBool7") == 1)
+            subToggle.isOn = true;
+        else
+            subToggle.isOn = false;
+        
+        if (PlayerPrefs.GetInt("toggleVertical") == -1)
+            horizontalToggle.isOn = true;
+        else
+            horizontalToggle.isOn = false; 
+        
+        if (PlayerPrefs.GetInt("toggleHorizontal") == -1)
+            verticalToggle.isOn = true;
+        else
+            verticalToggle.isOn = false;
+
+        senSlider.value = PlayerPrefs.GetInt("sliderSensitivity");
+        senText.text = senSlider.value.ToString();
+        
+        fovSlider.value = PlayerPrefs.GetInt("sliderFoV");
+        fovText.text = fovSlider.value.ToString();
+
+        subDropDown.value = PlayerPrefs.GetInt("SubtitleVisual");
+
+        BGMSlider.value = PlayerPrefs.GetInt("sliderBGM");
+        BGMText.text = BGMSlider.value.ToString();
+        VoiceSlider.value = PlayerPrefs.GetInt("sliderVoice");
+        VoiceText.text = VoiceSlider.value.ToString();
+        effectsSlider.value = PlayerPrefs.GetInt("sliderEffects");
+        effectsText.text = effectsSlider.value.ToString();
+
+        if (PlayerPrefs.GetInt("toggleHint") == 1)
+            hintToggle.isOn = true;
+        else
+            hintToggle.isOn = false;
+
+        ammoDropDown.value = PlayerPrefs.GetInt("AmmoDropDown");
+
     }
 
     private void Update()
@@ -124,8 +216,83 @@ public class accessibilityOptions : MonoBehaviour
         switchWind();
         switchSub();
 
+        playerprefsInvert();
+        sensitivityPLayerPrefs();
+        fovPLayerPrefs();
+
+        volume();
+
+        ammoMultiplyer();
+        if (windowedToggle.isOn)
+        {
+            Screen.fullScreen = true;
+        }
+        else
+        {
+            Screen.fullScreen = false;
+
+        }
+
+        if (hintToggle.isOn == true)
+            PlayerPrefs.SetInt("toggleHint", 1);
+        else
+            PlayerPrefs.SetInt("toggleHint", 0);
     }
 
+    public void ammoMultiplyer()
+    {
+        switch (ammoDropDown.value)
+        {
+            case 0:
+                isInfinite = false;
+                PlayerPrefs.SetInt("AmmoDropDown", ammoDropDown.value);
+                multiplyer = 1;
+                break;
+            case 1:
+                isInfinite = false;
+                PlayerPrefs.SetInt("AmmoDropDown", ammoDropDown.value);
+                multiplyer = 2;
+                break;
+            case 2:
+                isInfinite = false;
+                PlayerPrefs.SetInt("AmmoDropDown", ammoDropDown.value);
+                multiplyer = 4;
+                break;
+            case 3:
+                isInfinite = false;
+                PlayerPrefs.SetInt("AmmoDropDown", ammoDropDown.value);
+                multiplyer = 10;
+                break;
+            case 4:
+                isInfinite = false;
+                PlayerPrefs.SetInt("AmmoDropDown", ammoDropDown.value);
+                multiplyer = 25;
+                break;
+            case 5:
+                isInfinite = true;
+                PlayerPrefs.SetInt("AmmoDropDown", ammoDropDown.value);
+                break;
+            default:
+                isInfinite = false;
+                PlayerPrefs.SetInt("AmmoDropDown", ammoDropDown.value);
+                multiplyer = 1;
+                break;
+        }
+    }
+
+    public void sensitivityPLayerPrefs()
+    {
+        PlayerPrefs.SetInt("sliderSensitivity", (int)senSlider.value);
+        senSlider.value = PlayerPrefs.GetInt("sliderSensitivity");
+        senText.text = senSlider.value.ToString();
+    }
+    
+    public void fovPLayerPrefs()
+    {
+        PlayerPrefs.SetInt("sliderFoV", (int)fovSlider.value);
+        fovSlider.value = PlayerPrefs.GetInt("sliderFoV");
+        fovText.text = fovSlider.value.ToString();
+    }
     public void spriteandMat()
     {
         if (PlayerPrefs.GetInt("ToggleBool") == 1)
@@ -264,5 +431,57 @@ public class accessibilityOptions : MonoBehaviour
             subtitles.SetActive(true);
         else
             subtitles.SetActive(false);
+
+        switch (subDropDown.value)
+        {
+            case 0:
+                subtitles.GetComponent<RawImage>().texture = subNormal;
+                PlayerPrefs.SetInt("SubtitleVisual", subDropDown.value);
+                break;
+            case 1:
+                subtitles.GetComponent<RawImage>().texture = subNormalInverted;
+                PlayerPrefs.SetInt("SubtitleVisual", subDropDown.value);
+                break; 
+            case 2:
+                subtitles.GetComponent<RawImage>().texture = subHighlight;
+                PlayerPrefs.SetInt("SubtitleVisual", subDropDown.value);
+                break;   
+            case 3:
+                subtitles.GetComponent<RawImage>().texture = subHighlightInverted;
+                PlayerPrefs.SetInt("SubtitleVisual", subDropDown.value);
+                break;
+            default:
+                subtitles.GetComponent<RawImage>().texture = subNormal;
+                PlayerPrefs.SetInt("SubtitleVisual", subDropDown.value);
+                break;
+        }
+    }
+
+    public void playerprefsInvert()
+    {
+        if (horizontalToggle.isOn == true)
+            PlayerPrefs.SetInt("toggleHorizontal", -1);
+        else
+            PlayerPrefs.SetInt("toggleHorizontal", 1);
+        
+        if (verticalToggle.isOn == true)
+            PlayerPrefs.SetInt("toggleVertical", -1);
+        else
+            PlayerPrefs.SetInt("toggleVertical", 1);
+    }
+
+    public void volume()
+    {
+        PlayerPrefs.SetInt("sliderBGM", (int)BGMSlider.value);
+        BGMSlider.value = PlayerPrefs.GetInt("sliderBGM");
+        BGMText.text = BGMSlider.value.ToString();
+        
+        PlayerPrefs.SetInt("sliderVoice", (int)VoiceSlider.value);
+        VoiceSlider.value = PlayerPrefs.GetInt("sliderVoice");
+        VoiceText.text = VoiceSlider.value.ToString(); 
+        
+        PlayerPrefs.SetInt("sliderEffects", (int)effectsSlider.value);
+        effectsSlider.value = PlayerPrefs.GetInt("sliderEffects");
+        effectsText.text = effectsSlider.value.ToString();
     }
 }

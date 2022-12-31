@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3886908426232229854}
   - component: {fileID: 3886908426232229841}
   - component: {fileID: 3886908426232229852}
+  - component: {fileID: 7993419441849357708}
   - component: {fileID: 6918598984763906243}
   - component: {fileID: 6406288935072647439}
   - component: {fileID: 4501757369771591918}
@@ -81,8 +82,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbInWindList: []
   strength: 0.1
-  windDirection: {x: 0, y: 0, z: 0}
   originalStrength: 0
+--- !u!114 &7993419441849357708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886908426232229840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086126e4df202f5419209f6b6da10e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accessibility: {fileID: 0}
+  typeOfAudio: 2
+  myAudioSource: {fileID: 0}
 --- !u!114 &6918598984763906243
 MonoBehaviour:
   m_ObjectHideFlags: 0
