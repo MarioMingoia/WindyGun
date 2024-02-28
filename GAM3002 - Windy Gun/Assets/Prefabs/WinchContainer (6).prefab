@@ -6428,7 +6428,7 @@ GameObject:
   - component: {fileID: 5635554299158863891}
   - component: {fileID: 5635554299158863890}
   - component: {fileID: 5635554299158863893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: floor
   m_Icon: {fileID: 0}

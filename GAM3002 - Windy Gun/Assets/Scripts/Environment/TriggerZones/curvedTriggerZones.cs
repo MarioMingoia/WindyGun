@@ -5,8 +5,11 @@ using UnityEngine;
 public class curvedTriggerZones : MonoBehaviour
 {
     public List<GameObject> otherTriggerZone;
+
+    [SerializeField]
     List<GameObject> myWind;
 
+    [SerializeField]
     List<windArea> myWindArea;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,8 @@ public class curvedTriggerZones : MonoBehaviour
     {
         if (other.gameObject.CompareTag("WindArea"))
         {
+            print("123");
+
             GameObject plrWind = other.gameObject;
 
             foreach (GameObject x in myWind)
@@ -53,7 +58,6 @@ public class curvedTriggerZones : MonoBehaviour
     {
         if (other.gameObject.CompareTag("WindArea"))
         {
-
             foreach (GameObject x in myWind)
             {
                 x.SetActive(false);

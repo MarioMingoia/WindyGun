@@ -11,7 +11,8 @@
                     "id": "ba370ff2-3525-4acc-ac18-e6fd47c6a6ff",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "24fb5ba9-bf6c-41f3-86bc-a48f9023c1cb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Look",
@@ -27,7 +29,8 @@
                     "id": "47f7809c-0f4d-40e4-86dc-b7cdffbf2773",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Shoot",
@@ -35,7 +38,8 @@
                     "id": "ccc0f881-9ba0-4d47-8d2c-0a2c7bb162ee",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Glider",
@@ -43,7 +47,8 @@
                     "id": "2d49d4ef-6f40-4c7c-a7b2-db4829ecdea2",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Sprint",
@@ -51,7 +56,8 @@
                     "id": "e56a27f5-abf8-47d4-bfc4-f871c69aac82",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Change Size of Wind",
@@ -59,7 +65,8 @@
                     "id": "9472231b-8b99-43b7-978c-438735c5c5f7",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Recall Wind",
@@ -67,7 +74,17 @@
                     "id": "f88f67a6-0d6c-4e2c-994a-5671a1d3bfaa",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "595b5787-a329-47d2-861c-0259556e9611",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -202,6 +219,17 @@
                     "action": "Recall Wind",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "476b4a33-7a83-4f4d-a976-e9c1da45a253",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -215,7 +243,8 @@
                     "id": "02ff9d55-f7aa-4268-ad51-3d40fdbf503a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

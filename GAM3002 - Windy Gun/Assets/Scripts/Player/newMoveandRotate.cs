@@ -5,22 +5,31 @@ using UnityEngine.InputSystem;
 
 public class newMoveandRotate : MonoBehaviour
 {
+    public float gravity = -9.81f;
+
+
     public Rigidbody rb;
     public GameObject camHolder;
     public float speed, sensitivity, maxForce, jumpForce;
     private Vector2 move, look;
     private float lookrotation;
-    public bool grounded;
 
     public GameObject uiStuff;
     public GameObject accessMenu;
 
     public float originalSpeed;
     public float sprintSpeed;
+    public float crouchSpeed;
     public float airMovement;
 
     [SerializeField]
     private Camera cam;
+
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float jumpingPower = 16f;
+
+    bool isCrouching;
 
     private void Start()
     {
@@ -30,10 +39,37 @@ public class newMoveandRotate : MonoBehaviour
         airMovement = speed / 1.5f;
 
         sprintSpeed = speed * 1.5f;
+        crouchSpeed = speed / 2;
     }
     public void onMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
+    }
+
+    public void onCrouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (isCrouching)
+            {
+                print("crouch");
+                speed = crouchSpeed;
+                isCrouching = false;
+            }
+            else if (!isCrouching)
+            {
+                print("un-crouch");
+                speed = originalSpeed;
+                isCrouching = true;
+            }
+            //do crouching stuff here
+            //else if (context.canceled)
+            //{
+            //    speed = originalSpeed;
+            //    //end crouching stuff here
+            //}
+        }
+
     }
     
     public void onLook(InputAction.CallbackContext context)
@@ -43,19 +79,23 @@ public class newMoveandRotate : MonoBehaviour
     
     public void onJump(InputAction.CallbackContext context)
     {
-        jump();
+        if (context.performed)
+            jump();
+        else if (context.canceled && rb.velocity.y > 0f)
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f, rb.velocity.z);
     }
-    
+
     public void onSprint(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             speed = sprintSpeed;
-
+            //do crouching stuff here
         }
         else if (context.canceled)
         {
             speed = originalSpeed;
+            //end crouching stuff here
         }
     }
 
@@ -66,7 +106,7 @@ public class newMoveandRotate : MonoBehaviour
 
         sensitivity = PlayerPrefs.GetInt("sliderSensitivity") / 10;
 
-        if (!grounded)
+        if (!IsGrounded())
             speed = airMovement;
 
         cam.fieldOfView = PlayerPrefs.GetInt("sliderFoV");
@@ -95,9 +135,10 @@ public class newMoveandRotate : MonoBehaviour
 
     void camLook()
     {
-
+        print("Horizontal " + PlayerPrefs.GetInt("toggleHorizontal") + " Vertical: " + PlayerPrefs.GetInt("toggleHorizontal"));
         if (!uiStuff.activeInHierarchy && !accessMenu.activeInHierarchy)
         {
+            print("inactive");
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             transform.Rotate(Vector3.up * (look.x * PlayerPrefs.GetInt("toggleVertical")) * sensitivity);
@@ -117,19 +158,17 @@ public class newMoveandRotate : MonoBehaviour
 
     void jump()
     {
-        Vector3 jumpForces = Vector3.zero;
 
-        if (grounded)
+        if (IsGrounded())
         {
-            jumpForces = Vector3.up * jumpForce;
+            rb.velocity = new Vector3(rb.velocity.x, jumpingPower, rb.velocity.z);
         }
 
-        rb.AddForce(jumpForces, ForceMode.VelocityChange);
     }
 
 
-    public void setGrounded(bool state)
+    private bool IsGrounded()
     {
-        grounded = state;
+        return Physics.CheckSphere(groundCheck.position, 0.2f, groundLayer);
     }
 }
